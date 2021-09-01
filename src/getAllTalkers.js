@@ -1,10 +1,4 @@
-const fs = require('fs');
-
-function readFile(filename) {
-  const fileContent = fs.readFileSync(filename, 'utf-8');
-
-  return JSON.parse(fileContent);
-}
+const readFile = require('./utils/readFile');
 
 function getAllTalkers(req, res) {
   const allTalkers = readFile('talker.json');
