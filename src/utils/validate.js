@@ -43,7 +43,7 @@ function validateRate(rate) {
 }
 
 function validateTalkExists(talk) {
-  if (!talk || !talk.watchedAt || !talk.rate) {
+  if (!talk || !talk.watchedAt || (talk.rate !== 0 && !talk.rate)) {
     return false;
   }
 
