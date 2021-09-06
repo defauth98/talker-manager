@@ -4,7 +4,7 @@ function validateToken(token) {
   }
 
   if (token.length < 16) {
-    return 'Token inválido'; 
+    return 'Token inválido';
   }
 }
 
