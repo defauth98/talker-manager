@@ -17,14 +17,14 @@ function deleteTalker(req, res) {
   const validationMessage = validateToken(token);
 
   if (validationMessage) {
-    return res
-      .status(401)
-      .json({ message: validationMessage });
+    return res.status(401).json({ message: validationMessage });
   }
 
   writeDeletedTalker(id);
 
-  return res.status(200).json({ message: 'Pessoa palestrante deletada com sucesso' });
+  return res
+    .status(200)
+    .json({ message: 'Pessoa palestrante deletada com sucesso' });
 }
 
 module.exports = deleteTalker;

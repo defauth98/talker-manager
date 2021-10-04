@@ -1,4 +1,4 @@
-const validate = require('./utils/validate');
+const { validate } = require('./utils/validate');
 const writeTalker = require('./utils/writeTalker');
 
 function createTalker(req, res) {

@@ -96,4 +96,4 @@ function validate(token, name, age, talk) {
   }
 }
 
-module.exports = validate;
+module.exports = { validate, validateToken };
