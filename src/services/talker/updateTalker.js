@@ -1,10 +1,10 @@
-const validate = require('./utils/validate');
-const writeUpdatedTalker = require('./utils/writeUpdatedTalker');
+const { validate } = require('../../utils/validations/validate');
+const writeUpdatedTalker = require('../../utils/writeUpdatedTalker');
 
 function updateTalker(req, res) {
   const { name, age, talk } = req.body;
-  const token = req.headers.authorization;
   const { id } = req.params;
+  const token = req.headers.authorization;
 
   const validationMessage = validate(token, name, age, talk);
 

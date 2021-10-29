@@ -1,12 +1,12 @@
 const { Router } = require('express');
 
-const getAllTalkers = require('./getAllTalkers');
-const getTalkerById = require('./getTalkerById');
-const createTalker = require('./createTalker');
-const updateTalker = require('./updateTalker');
-const deleteTalker = require('./deleteTalker');
-const searchTalker = require('./searchTalker');
-const login = require('./login');
+const getAllTalkers = require('./services/talker/getAllTalkers');
+const searchTalker = require('./services/talker/searchTalker');
+const getTalkerById = require('./services/talker/getTalkerById');
+const createTalker = require('./services/talker/createTalker');
+const updateTalker = require('./services/talker/updateTalker');
+const deleteTalker = require('./services/talker/deleteTalker');
+const login = require('./services/login/login');
 
 const routes = Router();
 

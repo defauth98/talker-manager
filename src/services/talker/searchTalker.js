@@ -1,9 +1,8 @@
-const readFile = require('./utils/readFile');
-const { validateToken } = require('./utils/validate');
+const readFile = require('../../utils/readFile');
+const validateToken = require('../../utils/validations/validateToken');
 
 function searchTalker(req, res) {
   const { q } = req.query;
-
   const token = req.headers.authorization;
 
   const tokenValidationMessage = validateToken(token);

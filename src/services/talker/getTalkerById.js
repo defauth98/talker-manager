@@ -1,4 +1,4 @@
-const readFile = require('./utils/readFile');
+const readFile = require('../../utils/readFile');
 
 function getTalkerById(req, res) {
   const { id } = req.params;

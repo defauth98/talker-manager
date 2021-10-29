@@ -1,4 +1,4 @@
-const readFile = require('./utils/readFile');
+const readFile = require('../../utils/readFile');
 
 function getAllTalkers(req, res) {
   const allTalkers = readFile('talker.json');
