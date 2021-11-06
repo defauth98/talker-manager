@@ -1,9 +1,9 @@
 <h1 align="center">Talker Manager</h1>
-<p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://twitter.com/defauth8" target="_blank">
-  </a>
-</p>
+<h2 align="center">
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Talker%20Manager&uri=https%3A%2F%2Fgithub.com%2Fdefauth98%2Ftalker-manager%2Fblob%2Fmain%2FInsomnia_2021-11-06.json)
+
+</h2>
 
 **Descrição**
 
