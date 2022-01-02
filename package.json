@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "restore": "cp tests/seed.json talker.json",
+    "test:coverage": "jest --runInBand --coverage",
+    "posttest": "cp tests/seed.json talker.json",
     "start": "node index.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
