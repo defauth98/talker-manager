@@ -1,4 +1,5 @@
 const createTalker = require('../services/talker/createTalker');
+const deleteTalker = require('../services/talker/deleteTalker');
 
 module.exports = { 
   create(req, res) {
@@ -14,9 +15,14 @@ module.exports = {
     return res.status(201).json(loginReponse);
   },
 
-  // delete(req, res) {
-    
-  // },
+  delete(req, res) {
+    const { id } = req.params;
+    const token = req.headers.authorization;
+
+    const deleteTalkerReponse = deleteTalker(token, id);
+
+    return res.status(deleteTalkerReponse.status).json({ message: deleteTalkerReponse.message });
+  },
 
   // index(req, res) {
     
