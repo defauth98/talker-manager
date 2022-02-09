@@ -278,6 +278,8 @@ ehthumbs_vista.db
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+talker.json
+
 # Windows Installer files
 *.cab
 *.msi
