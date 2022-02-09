@@ -1,20 +1,23 @@
 const readFile = require('../../utils/readFile');
 
-function getTalkerById(req, res) {
-  const { id } = req.params;
-
+function getTalkerById(id) {
   try {
     const allTalkers = readFile('talker.json');
-
     const talker = allTalkers.find((item) => String(item.id) === String(id));
 
     if (!talker) {
       throw new Error('not found');
     }
 
-    return res.status(200).json(talker);
+    return {
+      status: 200,
+      talker,
+    };
   } catch (error) {
-    return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+    return {
+      status: 404,
+      message: 'Pessoa palestrante não encontrada',
+    };
   }
 }
 

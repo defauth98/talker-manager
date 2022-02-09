@@ -1,6 +1,7 @@
 const createTalker = require('../services/talker/createTalker');
 const deleteTalker = require('../services/talker/deleteTalker');
 const getAllTalkers = require('../services/talker/getAllTalkers');
+const getTalkerById = require('../services/talker/getTalkerById');
 
 module.exports = { 
   create(req, res) {
@@ -29,9 +30,19 @@ module.exports = {
     return res.status(200).json(getAllTalkers());
   },
 
-  // show(req, res) {
-    
-  // },
+  show(req, res) {
+    const { id } = req.params;
+
+    const getByResponse = getTalkerById(id);
+
+    if (getByResponse.message) {
+      return res
+        .status(getByResponse.status)
+        .json({ message: getByResponse.message });
+    }
+
+    return res.status(getByResponse.status).json(getByResponse.talker);
+  },
 
   // search(req, res) {
     

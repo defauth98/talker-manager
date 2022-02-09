@@ -1,7 +1,6 @@
 const { Router } = require('express');
 
 const searchTalker = require('./services/talker/searchTalker');
-const getTalkerById = require('./services/talker/getTalkerById');
 const updateTalker = require('./services/talker/updateTalker');
 const LoginController = require('./controllers/LoginController');
 const TalkerController = require('./controllers/TalkerController');
@@ -12,7 +11,7 @@ routes.post('/login', LoginController.login);
 
 routes.get('/talker/search', searchTalker);
 routes.get('/talker', TalkerController.index);
-routes.get('/talker/:id', getTalkerById);
+routes.get('/talker/:id', TalkerController.show);
 routes.post('/talker', TalkerController.create);
 routes.put('/talker/:id', updateTalker);
 routes.delete('/talker/:id', TalkerController.delete);
