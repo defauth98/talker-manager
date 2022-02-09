@@ -3,6 +3,7 @@ const deleteTalker = require('../services/talker/deleteTalker');
 const getAllTalkers = require('../services/talker/getAllTalkers');
 const getTalkerById = require('../services/talker/getTalkerById');
 const searchTalker = require('../services/talker/searchTalker');
+const updateTalker = require('../services/talker/updateTalker');
 
 module.exports = { 
   create(req, res) {
@@ -58,8 +59,18 @@ module.exports = {
     return res.status(searchReponse.status).json(searchReponse.result);
   },
 
-  // update(req, res) {
+  update(req, res) {
+    const { name, age, talk } = req.body;
+    const { id } = req.params;
+    const token = req.headers.authorization;
 
-  // },
+    const updateReponse = updateTalker(token, { name, age, talk }, id);
+
+    if (updateReponse.message) {
+      return res.status(updateReponse.status).json({ message: updateReponse.message });
+    }
+
+    return res.status(updateReponse.status).json(updateReponse.updatedTalker);
+  },
 
 };

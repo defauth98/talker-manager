@@ -1,22 +1,21 @@
 const { validate } = require('../../utils/validations/validate');
 const writeUpdatedTalker = require('../../utils/writeUpdatedTalker');
 
-function updateTalker(req, res) {
-  const { name, age, talk } = req.body;
-  const { id } = req.params;
-  const token = req.headers.authorization;
+function updateTalker(token, talker, id) {
+  const { name, age, talk } = talker;
 
   const validationMessage = validate(token, name, age, talk);
 
   if (validationMessage) {
-    return res
-      .status(validationMessage.status)
-      .json({ message: validationMessage.message });
+    return validationMessage;
   }
 
-  const updatedTalker = writeUpdatedTalker({ name, age, talk }, id);
+  const updatedTalker = writeUpdatedTalker(talker, id);
 
-  return res.status(200).json(updatedTalker);
+  return {
+    status: 200,
+    updatedTalker,
+  };
 }
 
 module.exports = updateTalker;
