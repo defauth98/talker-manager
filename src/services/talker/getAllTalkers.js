@@ -1,9 +1,9 @@
 const readFile = require('../../utils/readFile');
 
-function getAllTalkers(req, res) {
+function getAllTalkers() {
   const allTalkers = readFile('talker.json');
 
-  return res.status(200).json(allTalkers);
+  return allTalkers;
 }
 
 module.exports = getAllTalkers;

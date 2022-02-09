@@ -1,5 +1,6 @@
 const createTalker = require('../services/talker/createTalker');
 const deleteTalker = require('../services/talker/deleteTalker');
+const getAllTalkers = require('../services/talker/getAllTalkers');
 
 module.exports = { 
   create(req, res) {
@@ -24,9 +25,9 @@ module.exports = {
     return res.status(deleteTalkerReponse.status).json({ message: deleteTalkerReponse.message });
   },
 
-  // index(req, res) {
-    
-  // },
+  index(_req, res) {
+    return res.status(200).json(getAllTalkers());
+  },
 
   // show(req, res) {
     
