@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand --watch",
+    "test": "jest",
     "test:coverage": "jest --runInBand --coverage",
     "posttest": "cp tests/seed.json talker.json",
     "start": "node index.js",
