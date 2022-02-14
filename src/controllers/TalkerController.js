@@ -1,16 +1,11 @@
-const createTalker = require('../services/talker/createTalker');
-const deleteTalker = require('../services/talker/deleteTalker');
-const getAllTalkers = require('../services/talker/getAllTalkers');
-const getTalkerById = require('../services/talker/getTalkerById');
-const searchTalker = require('../services/talker/searchTalker');
-const updateTalker = require('../services/talker/updateTalker');
+const TalkerService = require('../services/talker');
 
 module.exports = { 
   create(req, res) {
     const { name, age, talk } = req.body;
     const token = req.headers.authorization;
 
-    const loginReponse = createTalker(token, name, age, talk);
+    const loginReponse = TalkerService.createTalker(token, name, age, talk);
 
     if (loginReponse.status) {
       return res.status(loginReponse.status).json({ message: loginReponse.message });
@@ -23,19 +18,19 @@ module.exports = {
     const { id } = req.params;
     const token = req.headers.authorization;
 
-    const deleteTalkerReponse = deleteTalker(token, id);
+    const deleteTalkerReponse = TalkerService.deleteTalker(token, id);
 
     return res.status(deleteTalkerReponse.status).json({ message: deleteTalkerReponse.message });
   },
 
   index(_req, res) {
-    return res.status(200).json(getAllTalkers());
+    return res.status(200).json(TalkerService.getAllTalkers());
   },
 
   show(req, res) {
     const { id } = req.params;
 
-    const getByResponse = getTalkerById(id);
+    const getByResponse = TalkerService.getTalkerById(id);
 
     if (getByResponse.message) {
       return res
@@ -50,7 +45,7 @@ module.exports = {
     const { q } = req.query;
     const token = req.headers.authorization;
 
-    const searchReponse = searchTalker(token, q);
+    const searchReponse = TalkerService.searchTalker(token, q);
 
     if (searchReponse.message) {
       return res.status(searchReponse.status).json({ message: searchReponse.message });
@@ -64,7 +59,7 @@ module.exports = {
     const { id } = req.params;
     const token = req.headers.authorization;
 
-    const updateReponse = updateTalker(token, { name, age, talk }, id);
+    const updateReponse = TalkerService.updateTalker(token, { name, age, talk }, id);
 
     if (updateReponse.message) {
       return res.status(updateReponse.status).json({ message: updateReponse.message });
