@@ -67,7 +67,7 @@ npm i
 # Rode o projeto
 npm start
 
-# Rodar os teste
+# Rodar os testes
 npm test
 
 # Rotar os teste com o coverage report
