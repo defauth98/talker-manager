@@ -15,7 +15,7 @@ function deleteTalker(token, id) {
 
   return {
     status: 200,
-    message: 'Pessoa palestrante deletada com sucesso',
+    message: 'Pessoa palestrante excluída com sucesso',
   };
 }
 
