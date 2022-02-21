@@ -1,14 +1,5 @@
-const login = require('../../src/services/login/login')
-
-const validUserData = {
-  email: "validEmail@mail.com",
-  password: "validPassword"
-}
-
-const invaliduserData = {
-  email: "valid_email@mail.com",
-  password: "1234"
-}
+const login = require('../../../src/services/login/login')
+const { loginValidUserInfo, loginInvaliduserInfo } = require('../../utils/userData')
 
 describe("#LoginService", () => {
   it("should not login with no email", () => {
@@ -18,25 +9,25 @@ describe("#LoginService", () => {
   })
 
   it("should not login with invalid email", () => {
-    const {error} = login(invaliduserData.email, invaliduserData.password)
+    const {error} = login(loginInvaliduserInfo.email, loginInvaliduserInfo.password)
 
     expect(error).toEqual('O "email" deve ter o formato "email@email.com"')
   })
 
   it("should not logn with no password", () => {
-    const {error} = login(validUserData.email)
+    const {error} = login(loginValidUserInfo.email)
 
     expect(error).toEqual('O campo "password" é obrigatório')
   })
 
   it("should not login with invalid password", () => {
-    const {error} = login(validUserData.email, invaliduserData.password)
+    const {error} = login(loginValidUserInfo.email, loginInvaliduserInfo.password)
 
     expect(error).toEqual('O "password" deve ter pelo menos 6 caracteres')
   })
 
   it("should login with valid credentials", () => {
-    const {token} = login(validUserData.email, validUserData.password)
+    const {token} = login(loginValidUserInfo.email, loginValidUserInfo.password)
 
     expect(token.length).toBeGreaterThan(14)
   })
