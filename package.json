@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --runInBand --coverage",
+    "test:watch": "jest --watch",
     "posttest": "cp tests/seed.json talker.json",
     "start": "node index.js",
     "dev": "nodemon index.js",
