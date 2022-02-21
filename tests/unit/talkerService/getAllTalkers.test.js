@@ -1,6 +1,6 @@
 const TalkerService = require("../../../src/services/talker")
 
-describe('get all talkers', () => { 
+describe('getAllTalkers', () => { 
   it("should list all talkers", () => {
     const getAllResponse = TalkerService.getAllTalkers()
 
