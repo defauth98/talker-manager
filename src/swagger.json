@@ -33,7 +33,7 @@
               "examples": {
                 "Login" : {
                   "value" : {
-                    "name": "example@mail.com",
+                    "email": "example@mail.com",
                     "password": "senhaforte123"
                   }
                 }
@@ -67,6 +67,7 @@
         "sumary": "Create talker",
         "description": "Essa rota é responsável por criar um talker",
         "tags": ["Talkers"],
+        "security": [{"bearerAuth": []}],
         "requestBody": {
           "content": { 
             "application/json": {
@@ -99,17 +100,17 @@
                 "examples": {
                   "Name not found" : {
                     "value" : {
-                      "message": "O campo 'name' é obrigatório"
+                      "message": "O campo \"name\" é obrigatório"
                     }
                   }, 
                   "Invalid name" : {
                     "value" : {
-                      "message": "O ´name' deve ter pelo menos 3 caracteres"
+                      "message": "O \"name\" deve ter pelo menos 3 caracteres"
                     }
                   },
                   "Age not found" : {
                     "value" : {
-                      "message": "O campo 'age' é obrigatório"
+                      "message": "O campo \"age\" é obrigatório"
                     }
                   }, 
                   "Invalid age" : {
@@ -119,17 +120,17 @@
                   },
                   "Invalid talk": {
                     "value": {
-                      "message": "O campo 'talk' é obrigatório e 'watchedAt' e 'rate' não podem ser vazios"
+                      "message": "O campo \"talk\" é obrigatório e \"watchedAt\" e \"rate\" não podem ser vazios"
                     }
                   },
                   "Invalid date": {
                     "value": {
-                      "message": "O campo 'watchedAt' deve ter o formato 'dd/mm/aaaa'"
+                      "message": "O campo \"watchedAt\" deve ter o formato \"dd/mm/aaaa\""
                     }
                   },
                   "Invalid rate": {
                     "value": {
-                      "message": "O campo 'rate' deve ser um inteiro de 1 à 5"
+                      "message": "O campo \"rate\" deve ser um inteiro de 1 à 5"
                     }
                   }
                 }
@@ -159,6 +160,11 @@
             }
           }
         }
+      },
+      "get": {
+        "sumary": "Create talker",
+        "description": "Essa rota é responsável por criar um talker",
+        "tags": ["Talkers"]
       }
     }
   },
@@ -167,7 +173,7 @@
       "Login": { 
         "type": "object",
         "properties": {
-          "name": {
+          "email": {
             "type": "string"
           },
           "password": {
@@ -196,6 +202,13 @@
             }
           }
         }
+      }
+    }, 
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
