@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Talker Manager API",
+    "description": "API construída no curso de desenvolvimento Web da Trybe, que tem como objetivo o aprendizado do modulo FS do Node e como funciona uma API Rest. Consiste um crud de Talkers.",
+    "contact": {
+      "email": "neto.daniribeiro@gmail.com"
+    },
+    "version": "1.0.0"
+  }, 
+  "servers": [
+    {
+      "url": "http://localhost:3333",
+      "description": "API de teste"
+    },
+    {
+      "url": "https://defauth98-talker-manager.herokuapp.com/",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "sumary": "Login",
+        "description": "Essa rota é responsável por fazer login na API",
+        "tags": ["Talkers"],
+        "requestBody": {
+          "content": { 
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "examples": {
+                "Login" : {
+                  "value" : {
+                    "name": "example@mail.com",
+                    "password": "senhaforte123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 - Sucesso ao fazer login",
+            "content" : {
+              "application/json": {
+                "schema": {
+                  "token": "string"
+                },
+                "examples": {
+                  "Token" : {
+                    "value" : {
+                      "token": "5e6f246df54a2b48ca21cd56c7aeba4da5630de195797df9806ddba3e0b02ee9"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas": {
+      "Login": { 
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,13 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const swagger = require('swagger-ui-express');
 
 dotenv.config();
 
 const routes = require('./src/routes');
 
+const swaggerDocs = require('./src/swagger.json');
+
 const app = express();
 app.use(bodyParser.json());
+
+app.use('/api-docs', swagger.serve, swagger.setup(swaggerDocs));
 
 const HTTP_OK_STATUS = 200;
 // eslint-disable-next-line no-undef
