@@ -61,6 +61,105 @@
           }
         }
       }
+    },
+    "/talker": {
+      "post": {
+        "sumary": "Create talker",
+        "description": "Essa rota é responsável por criar um talker",
+        "tags": ["Talkers"],
+        "requestBody": {
+          "content": { 
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Talker"
+              },
+              "examples": {
+                "Login" : {
+                  "value" : {
+                    "name": "Danielle Santos",
+                    "age": 56,
+                    "talk": {
+                      "watchedAt": "22/10/2019",
+                      "rate": 5
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "400 - Campos inválidos",
+            "content" : {
+              "application/json": {
+                "schema": {
+                  "token": "string"
+                },
+                "examples": {
+                  "Name not found" : {
+                    "value" : {
+                      "message": "O campo 'name' é obrigatório"
+                    }
+                  }, 
+                  "Invalid name" : {
+                    "value" : {
+                      "message": "O ´name' deve ter pelo menos 3 caracteres"
+                    }
+                  },
+                  "Age not found" : {
+                    "value" : {
+                      "message": "O campo 'age' é obrigatório"
+                    }
+                  }, 
+                  "Invalid age" : {
+                    "value" : {
+                      "message": "A pessoa palestrante deve ser maior de idade"
+                    }
+                  },
+                  "Invalid talk": {
+                    "value": {
+                      "message": "O campo 'talk' é obrigatório e 'watchedAt' e 'rate' não podem ser vazios"
+                    }
+                  },
+                  "Invalid date": {
+                    "value": {
+                      "message": "O campo 'watchedAt' deve ter o formato 'dd/mm/aaaa'"
+                    }
+                  },
+                  "Invalid rate": {
+                    "value": {
+                      "message": "O campo 'rate' deve ser um inteiro de 1 à 5"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 - Erro de autenticação",
+            "content" : {
+              "application/json": {
+                "schema": {
+                  "token": "string"
+                },
+                "examples": {
+                  "Token not found" : {
+                    "value" : {
+                      "message": "Token não encontrado'"
+                    }
+                  }, 
+                  "Invalid Token" : {
+                    "value" : {
+                      "message": "Token inválido"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -73,6 +172,28 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "Talker": { 
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "talk": {
+            "type": "object",
+            "properties": {
+              "watchedAt": {
+                "type": "string"
+              },
+              "rate": {
+                "type": "string"
+              }
+            }
           }
         }
       }
