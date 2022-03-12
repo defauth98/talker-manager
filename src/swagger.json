@@ -7,7 +7,7 @@
       "email": "neto.daniribeiro@gmail.com"
     },
     "version": "1.0.0"
-  }, 
+  },
   "servers": [
     {
       "url": "http://localhost:3333",
@@ -21,18 +21,18 @@
   "paths": {
     "/login": {
       "post": {
-        "sumary": "Login",
+        "summary": "Login",
         "description": "Essa rota é responsável por fazer login na API",
-        "tags": ["Talkers"],
+        "tags": ["Authentication"],
         "requestBody": {
-          "content": { 
+          "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Login"
               },
               "examples": {
-                "Login" : {
-                  "value" : {
+                "Login": {
+                  "value": {
                     "email": "example@mail.com",
                     "password": "senhaforte123"
                   }
@@ -44,14 +44,14 @@
         "responses": {
           "200": {
             "description": "200 - Sucesso ao fazer login",
-            "content" : {
+            "content": {
               "application/json": {
                 "schema": {
                   "token": "string"
                 },
                 "examples": {
-                  "Token" : {
-                    "value" : {
+                  "Token": {
+                    "value": {
                       "token": "5e6f246df54a2b48ca21cd56c7aeba4da5630de195797df9806ddba3e0b02ee9"
                     }
                   }
@@ -64,19 +64,20 @@
     },
     "/talker": {
       "post": {
-        "sumary": "Create talker",
+        "summary": "Create talker",
         "description": "Essa rota é responsável por criar um talker",
         "tags": ["Talkers"],
-        "security": [{"bearerAuth": []}],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
-          "content": { 
+          "required": true,
+          "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Talker"
               },
               "examples": {
-                "Login" : {
-                  "value" : {
+                "Talker": {
+                  "value": {
                     "name": "Danielle Santos",
                     "age": 56,
                     "talk": {
@@ -90,31 +91,53 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "200 - Sucesso ao criar um Talker",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Talker"
+                },
+                "examples": {
+                  "Talker": {
+                    "value": {
+                      "name": "Danielle Santos",
+                      "age": 56,
+                      "talk": {
+                        "watchedAt": "22/10/2019",
+                        "rate": 5
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "400": {
             "description": "400 - Campos inválidos",
-            "content" : {
+            "content": {
               "application/json": {
                 "schema": {
                   "token": "string"
                 },
                 "examples": {
-                  "Name not found" : {
-                    "value" : {
+                  "Name not found": {
+                    "value": {
                       "message": "O campo \"name\" é obrigatório"
                     }
-                  }, 
-                  "Invalid name" : {
-                    "value" : {
+                  },
+                  "Invalid name": {
+                    "value": {
                       "message": "O \"name\" deve ter pelo menos 3 caracteres"
                     }
                   },
-                  "Age not found" : {
-                    "value" : {
+                  "Age not found": {
+                    "value": {
                       "message": "O campo \"age\" é obrigatório"
                     }
-                  }, 
-                  "Invalid age" : {
-                    "value" : {
+                  },
+                  "Invalid age": {
+                    "value": {
                       "message": "A pessoa palestrante deve ser maior de idade"
                     }
                   },
@@ -139,19 +162,19 @@
           },
           "401": {
             "description": "401 - Erro de autenticação",
-            "content" : {
+            "content": {
               "application/json": {
                 "schema": {
                   "token": "string"
                 },
                 "examples": {
-                  "Token not found" : {
-                    "value" : {
+                  "Token not found": {
+                    "value": {
                       "message": "Token não encontrado'"
                     }
-                  }, 
-                  "Invalid Token" : {
-                    "value" : {
+                  },
+                  "Invalid Token": {
+                    "value": {
                       "message": "Token inválido"
                     }
                   }
@@ -162,15 +185,196 @@
         }
       },
       "get": {
-        "sumary": "Create talker",
-        "description": "Essa rota é responsável por criar um talker",
-        "tags": ["Talkers"]
+        "summary": "Lista todos os talkers",
+        "description": "Essa rota é responsável por listar todos os talkers",
+        "tags": ["Talkers"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "sumarry": "Listar talkers",
+            "description": "Lista todos os Talkers",
+            "responses": {
+              "200": {
+                "description": "Listar todos os Talkers",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "age": {
+                          "type": "number"
+                        },
+                        "id": {
+                          "type": "number"
+                        },
+                        "talk": {
+                          "type": "object",
+                          "properties": {
+                            "watchedAt": {
+                              "type": "string"
+                            },
+                            "rate": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/talker/{id}": {
+      "get": {
+        "summary": "Listar talker por id",
+        "description": "Essa rota é responsável por listar um talker por id",
+        "tags": ["Talkers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do Talker",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listar talkers por id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Talker"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar Talker",
+        "description": "Essa rota é responsável por mudar dos dados de um talker",
+        "tags": ["Talkers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do Talker",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Talker"
+              },
+              "examples": {
+                "Talker": {
+                  "value": {
+                    "name": "Danielle Santos",
+                    "age": 56,
+                    "talk": {
+                      "watchedAt": "22/10/2019",
+                      "rate": 5
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Listar talkers por id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Talker"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar Talker",
+        "description": "Essa rota é responsável por excluir um talker",
+        "tags": ["Talkers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do Talker",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - Talker removido com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "message": {
+                    "type": "string"
+                  }
+                },
+                "examples": {
+                  "Sucesso ao deletar": {
+                    "value": {
+                      "message": "Pessoa palestrante deletada com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/talker/search": {
+      "get": {
+        "summary": "Buscar Talkers pelo nome",
+        "description": "Essa rota é responsável buscar Talkers pelo nome",
+        "tags": ["Talkers"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "description": "Nome do Talker"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listar talkers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Talker"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
-  "components" : {
+  "components": {
     "schemas": {
-      "Login": { 
+      "Login": {
         "type": "object",
         "properties": {
           "email": {
@@ -181,7 +385,7 @@
           }
         }
       },
-      "Talker": { 
+      "Talker": {
         "type": "object",
         "properties": {
           "name": {
@@ -203,7 +407,7 @@
           }
         }
       }
-    }, 
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
