@@ -7,6 +7,10 @@
 
 Projeto desenvolvido durante o modulo de backend da Trybe. Consiste em uma API para registro de talkers para estudar o módulo fs (file system) do NodeJS e ExpressJS.
 
+Link para a API: https://defauth98-talker-manager.herokuapp.com/
+
+Link para a documentação da API: https://defauth98-talker-manager.herokuapp.com/api-docs
+
 ### 🌟 Habilidades
 
 - Realizar operações assíncronas utilizando callbacks;
