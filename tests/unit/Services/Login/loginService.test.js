@@ -1,5 +1,5 @@
-const login = require('../../../src/services/login/login')
-const { loginValidUserInfo, loginInvaliduserInfo } = require('../../utils/userData')
+const login = require('../../../../src/services/login/login')
+const { loginValidUserInfo, loginInvaliduserInfo } = require('../../../utils/userData')
 
 describe("#LoginService", () => {
   it("should not login with no email", () => {

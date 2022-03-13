@@ -1,5 +1,5 @@
-const TalkerService = require("../../../src/services/talker")
-const { validUserInfo } = require("../../utils/userData")
+const TalkerService = require('../../../../src/services/talker');
+const { validUserInfo } = require('../../../utils/userData');
 
 describe('deleteTalker', () => {
   it("should not delete a talker if no token is provided", () => {

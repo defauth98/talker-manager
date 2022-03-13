@@ -1,4 +1,4 @@
-const TalkerService = require("../../../src/services/talker")
+const TalkerService = require('../../../../src/services/talker');
 
 describe('GetTalkerById', () => { 
   it("should not get a talker with invalid id", () => {
@@ -14,4 +14,5 @@ describe('GetTalkerById', () => {
     expect(getTalkerByIdResponse.status).toEqual(200)
     expect(getTalkerByIdResponse).toHaveProperty('talker')
   })
- })
+}
+)

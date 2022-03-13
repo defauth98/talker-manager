@@ -1,5 +1,5 @@
-const TalkerService = require("../../../src/services/talker")
-const { validUserInfo } = require("../../utils/userData")
+const TalkerService = require('../../../../src/services/talker');
+const { validUserInfo } = require('../../../utils/userData');
 
 describe('SearchTalker', () => { 
   it("should not find a talker with no token", () => {

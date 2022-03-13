@@ -1,4 +1,4 @@
-const TalkerService = require("../../../src/services/talker")
+const TalkerService = require('../../../../src/services/talker');
 
 describe('getAllTalkers', () => { 
   it("should list all talkers", () => {
@@ -6,4 +6,5 @@ describe('getAllTalkers', () => {
 
     expect(getAllResponse.length).toBeGreaterThan(3)
   })
- })
+ }
+)
