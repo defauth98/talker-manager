@@ -2,22 +2,17 @@ const readfile = require('./readFile');
 const writeFile = require('./writeFile');
 
 function writeTalker(talker) {
-  try {
-    const newTalker = talker;
+  const newTalker = talker;
 
-    const allTalkers = readfile('talker.json');
+  const allTalkers = readfile('talker.json');
 
-    newTalker.id = allTalkers.length + 1;
+  newTalker.id = allTalkers.length + 1;
 
-    allTalkers.push(newTalker);
+  allTalkers.push(newTalker);
 
-    writeFile('talker.json', JSON.stringify(allTalkers));
+  writeFile('talker.json', JSON.stringify(allTalkers));
 
-    return talker;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
+  return talker;
 }
 
 module.exports = writeTalker;

@@ -1,6 +1,6 @@
 
-const LoginController = require('../../../src/controllers/LoginController')
-const LoginService = require('../../../src/services/login/LoginService')
+const LoginController = require('../../../../src/controllers/LoginController')
+const LoginService = require('../../../../src/services/login/LoginService')
 
 describe('#LoginController - Login', () => {
   const response = {}
