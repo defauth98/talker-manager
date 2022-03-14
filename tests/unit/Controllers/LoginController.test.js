@@ -18,9 +18,8 @@ describe('#LoginController - Login', () => {
       LoginService.login = jest.fn().mockImplementation(() => {
         return {token: "any_token"}}
       )
-
-
       LoginController.login(request, response)
+
       expect(response.status).toHaveBeenCalledWith(200);
     })
   });
@@ -37,7 +36,6 @@ describe('#LoginController - Login', () => {
       LoginService.login = jest.fn().mockImplementation(() => {
         return {error: "error_message"}}
       )
-  
   
       LoginController.login(request, response)
       expect(response.status).toHaveBeenCalledWith(400);
