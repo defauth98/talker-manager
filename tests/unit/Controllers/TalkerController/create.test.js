@@ -40,6 +40,7 @@ describe('#TalkerController - Create', () => {
     TalkerController.create(request, response)
 
     expect(response.status).toHaveBeenCalledWith(401);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it("should return status code 400 when field are invalid", () => {
@@ -52,6 +53,7 @@ describe('#TalkerController - Create', () => {
     TalkerController.create(request, response)
 
     expect(response.status).toHaveBeenCalledWith(400);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it('should return status 201 when field are valid', () => {

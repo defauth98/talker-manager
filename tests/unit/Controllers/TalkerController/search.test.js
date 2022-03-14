@@ -30,6 +30,7 @@ describe('#TalkerController - Search', () => {
     TalkerController.search(request, response)
 
     expect(response.status).toHaveBeenCalledWith(401);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it('should return status code 200', () => {
@@ -48,6 +49,7 @@ describe('#TalkerController - Search', () => {
     TalkerController.search(request, response)
 
     expect(response.status).toHaveBeenCalledWith(404);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
 }); 

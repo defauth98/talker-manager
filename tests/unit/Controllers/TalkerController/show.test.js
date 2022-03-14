@@ -39,6 +39,7 @@ describe('#TalkerController - Show', () => {
     TalkerController.show(request, response)
 
     expect(response.status).toHaveBeenCalledWith(404);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
 }); 

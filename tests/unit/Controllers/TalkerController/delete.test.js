@@ -28,6 +28,7 @@ describe('#TalkerController - Delete', () => {
     TalkerController.delete(request, response)
 
     expect(response.status).toHaveBeenCalledWith(401);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it('should return status code 200 when talker is deleted', () => {
@@ -37,6 +38,7 @@ describe('#TalkerController - Delete', () => {
     TalkerController.delete(request, response)
 
     expect(response.status).toHaveBeenCalledWith(200);
+    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
 }); 
