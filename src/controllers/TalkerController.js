@@ -61,7 +61,7 @@ module.exports = {
 
     const updateReponse = TalkerService.updateTalker(token, { name, age, talk }, id);
 
-    if (updateReponse.message) {
+    if (updateReponse && updateReponse.message) {
       return res.status(updateReponse.status).json({ message: updateReponse.message });
     }
 
