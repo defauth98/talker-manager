@@ -1,4 +1,4 @@
-<h1 align="center">Talker Manager API 🫂 </h1>
+<h1 align="center">Talker Manager API :microphone:</h1>
 <h2 align="center">
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Talker%20Manager&uri=https%3A%2F%2Fgithub.com%2Fdefauth98%2Ftalker-manager%2Fblob%2Fmain%2FInsomnia_2021-11-06.json)
@@ -58,6 +58,13 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - DELETE **/talker/:id** - Deleta um talker
 - GET **/talker** - Lista todos os talkers
 - GET **/talker/:id** - Lista um talker pelo ID
+
+### :boom: Próximos passos
+
+- [x] Testes unitários na arquitetura MSC
+- [ ] Testes de integração
+- [ ] Refatorar validações
+- [ ] Criar testes unitários para as validações
 
 ### :rocket: Como rodar o projeto
 
