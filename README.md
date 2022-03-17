@@ -63,7 +63,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [x] Testes unitários na arquitetura MSC
 - [ ] Refatorar: Controllers, Services e as validaçoes
-- [ ] Criar testes unitários para as validações
+- [x] Criar testes unitários para as validações
 - [ ] Criar a camada Model
 - [ ] 100% de Code Coverage
 - [ ] Testes de integração
