@@ -1,5 +1,5 @@
-const TalkerController = require('../../../../src/controllers/talker-controller')
-const TalkerService = require('../../../../src/services/talker-service')
+const TalkerController = require('../../../src/controllers/talker-controller')
+const TalkerService = require('../../../src/services/talker-service')
 
 describe('#TalkerController - Delete', () => {
   const response = {}
