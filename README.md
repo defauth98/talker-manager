@@ -62,9 +62,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ### :boom: Próximos passos
 
 - [x] Testes unitários na arquitetura MSC
-- [ ] Testes de integração
-- [ ] Refatorar validações
+- [ ] Refatorar: Controllers, Services e as validaçoes
 - [ ] Criar testes unitários para as validações
+- [ ] Criar a camada Model
+- [ ] 100% de Code Coverage
+- [ ] Testes de integração
 
 ### :rocket: Como rodar o projeto
 

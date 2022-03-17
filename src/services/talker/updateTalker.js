@@ -18,4 +18,4 @@ function updateTalker(token, talker, id) {
   };
 }
 
-module.exports = updateTalker;
+module.exports = updateTalker; 
