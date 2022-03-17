@@ -1,6 +1,5 @@
-
-const LoginController = require('../../../../src/controllers/LoginController')
-const LoginService = require('../../../../src/services/login/LoginService')
+const LoginController = require('../../../../src/controllers/login-controller')
+const LoginService = require('../../../../src/services/login-service')
 
 describe('#LoginController - Login', () => {
   const response = {}
@@ -15,7 +14,8 @@ describe('#LoginController - Login', () => {
 
       response.json =  jest.fn(() => {})
       response.status = jest.fn(() => response)
-      LoginService.login = jest.fn().mockImplementation(() => {
+
+      LoginService.exec = jest.fn().mockImplementation(() => {
         return {token: "any_token"}}
       )
       LoginController.login(request, response)
@@ -33,8 +33,9 @@ describe('#LoginController - Login', () => {
   
       response.json =  jest.fn(() => {})
       response.status = jest.fn(() => response)
-      LoginService.login = jest.fn().mockImplementation(() => {
-        return {error: "error_message"}}
+
+      LoginService.exec = jest.fn().mockImplementation(() => {
+        return {errorMessage: "error_message"}}
       )
   
       LoginController.login(request, response)

@@ -1,5 +1,5 @@
 const { createHmac } = require('crypto');
-const errorHandler = require('../helpers/error-handler');
+const ErrorHandler = require('../helpers/error-handler');
 const Validator = require('../validations/validator');
 
 class LoginService {
@@ -12,8 +12,6 @@ class LoginService {
   
       return { token };
     } catch (error) {
-      const ErrorHandler = new errorHandler();
-
       return ErrorHandler.handle(error);
     }
   }

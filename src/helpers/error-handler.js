@@ -1,7 +1,7 @@
 const authorizationError = require('./authorization-error');
 
 class ErrorHandler {
-  handle(error) {
+  static handle(error) {
     if (error.name === authorizationError.name) {
       return {
         status: 403,
