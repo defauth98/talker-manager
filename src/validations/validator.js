@@ -1,29 +1,26 @@
 const ValidationError = require('../helpers/validation-error');
+const AuthorizationError = require('../helpers/authorization-error');
 
 class Validator {
   validateRange(rate, min, max, field) {
-    if (Number(rate) >= min && Number(rate) <= max) {
+    if (rate > max || rate < min) {
       throw new ValidationError(`O campo "${field}" deve ser um inteiro de ${min} à ${max}`);
-    }
+    } 
   }
 
-  validateField(field) {
-    if (!field || field.length <= 0) {
+  validateFieldExists(field, value) {
+    if (!value || value.length <= 0) {
       throw new ValidationError(`O campo "${field}" é obrigatório`);
     }
   }
 
-  validateFieldMinLength(field, minLength) {
-    if (field.length <= minLength) {
-      throw new ValidationError(`O "${field}name" deve ter pelo menos ${minLength} caracteres`);
+  validateFieldMinLength(field, value, minLength) {
+    if (value.length <= minLength) {
+      throw new ValidationError(`O "${field}" deve ter pelo menos ${minLength} caracteres`);
     }
   }
 
-  validateMinAge(age, minAge = 18) {
-    if (!age || age.length <= 0) {
-      throw new ValidationError('O campo "age" é obrigatório');
-    }
-  
+  validateMinAge(age, minAge) {
     if (age < minAge) {
       throw new ValidationError('A pessoa palestrante deve ser maior de idade');
     }
@@ -39,11 +36,11 @@ class Validator {
 
   validateToken(token) {
     if (!token) {
-      throw new ValidationError('Token não encontrado');
+      throw new AuthorizationError('Token não encontrado');
     }
   
     if (token.length < 16) {
-      throw new ValidationError('Token inválido');
+      throw new AuthorizationError('Token inválido');
     }
   }
 
@@ -61,6 +58,21 @@ class Validator {
 
       throw new ValidationError(message);
     }
+  }
+
+  validateLogin(email, password) {
+    this.validateFieldExists('email', email);
+    this.validateFieldExists('password', password);
+    this.validateEmail(email);
+    this.validateFieldMinLength('password', password, 7);
+  }
+
+  validateTalker(name, age, talk) {
+    this.validateFieldExists('name', name);
+    this.validateFieldExists('age', age);
+    this.validateTalk(talk);
+    this.validateFieldMinLength('name', name, 3);
+    this.validateMinAge(age, 18);
   }
 }
 

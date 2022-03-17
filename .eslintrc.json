@@ -5,6 +5,7 @@
   "extends": "trybe-backend",
   "rules": {
     "sonarjs/no-duplicate-string": ["error", 5],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "new-cap": "off"
   }
 }
