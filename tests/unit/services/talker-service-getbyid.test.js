@@ -1,4 +1,5 @@
-const TalkerService = require('../../../../src/services/talker');
+const TalkerService = require("../../../src/services/talker-service")
+
 
 describe('GetTalkerById', () => { 
   it("should not get a talker with invalid id", () => {

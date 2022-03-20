@@ -1,4 +1,4 @@
-const TalkerService = require('../../../../src/services/talker');
+const TalkerService = require("../../../src/services/talker-service")
 
 describe('getAllTalkers', () => { 
   it("should list all talkers", () => {
