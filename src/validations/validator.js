@@ -64,7 +64,7 @@ class Validator {
     this.validateFieldExists('email', email);
     this.validateFieldExists('password', password);
     this.validateEmail(email);
-    this.validateFieldMinLength('password', password, 7);
+    this.validateFieldMinLength('password', password, 6);
   }
 
   validateTalker(name, age, talk) {
