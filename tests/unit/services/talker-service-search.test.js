@@ -1,30 +1,35 @@
 const TalkerService = require("../../../src/services/talker-service")
 const { validUserInfo } = require('../../utils/userData');
+const exec = require('child_process').exec;
 
 describe('SearchTalker', () => { 
-  it("should not find a talker with no token", () => {
-    const searchTalkerResponse = TalkerService.searchTalker('')
+  afterEach(() => {
+    exec("cp tests/seed.json talker.json")
+  })
 
-    expect(searchTalkerResponse.status).toEqual(401)
-    expect(searchTalkerResponse.message).toEqual('Token não encontrado')
+  it("should not find a talker with no token", () => {
+    const searchTalkerResponse = TalkerService.search('')
+
+    expect(searchTalkerResponse.status).toEqual(403)
+    expect(searchTalkerResponse.errorMessage).toEqual('Token não encontrado')
   })
 
   it("should not find a talker with invalid token", () => {
-    const searchTalkerResponse = TalkerService.searchTalker('invalid_token')
+    const searchTalkerResponse = TalkerService.search('invalid_token')
 
-    expect(searchTalkerResponse.status).toEqual(401)
-    expect(searchTalkerResponse.message).toEqual('Token inválido')
+    expect(searchTalkerResponse.status).toEqual(403)
+    expect(searchTalkerResponse.errorMessage).toEqual('Token inválido')
   })
 
-  it("should not find a talker with invalid name", () => {
-    const searchTalkerResponse = TalkerService.searchTalker(validUserInfo, "invalid_search")
+  // it("should not find a talker with invalid name", () => {
+  //   const searchTalkerResponse = TalkerService.search(validUserInfo, "invalid_search")
 
-    expect(searchTalkerResponse.status).toEqual(200)
-    expect(searchTalkerResponse.result.length).toEqual(0)
-  })
+  //   expect(searchTalkerResponse.status).toEqual(200)
+  //   expect(searchTalkerResponse.result.length).toEqual(0)
+  // })
 
   it("should  find a talker with valid name", () => {
-    const searchTalkerResponse = TalkerService.searchTalker(validUserInfo, "Heloísa")
+    const searchTalkerResponse = TalkerService.search(validUserInfo, "Heloísa")
 
     expect(searchTalkerResponse.status).toEqual(200)
     expect(searchTalkerResponse.result.length).toBeGreaterThanOrEqual(1)
