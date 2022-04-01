@@ -44,7 +44,7 @@ class TalkerService {
     try {
       const allTalkers = readFile('talker.json');
       const talker = allTalkers.find((item) => String(item.id) === String(id));
-  
+      
       if (!talker) {
         throw new Error('not found');
       }
@@ -56,7 +56,7 @@ class TalkerService {
     } catch (error) {
       return {
         status: 404,
-        message: 'Pessoa palestrante não encontrada',
+        errorMessage: 'Pessoa palestrante não encontrada',
       };
     }
   }
@@ -79,7 +79,7 @@ class TalkerService {
 
   update(token, talker, id) {
     try {
-    const { name, age, talk } = talker;
+      const { name, age, talk } = talker;
 
       Validator.validateToken(token);
       Validator.validateTalker(name, age, talk);

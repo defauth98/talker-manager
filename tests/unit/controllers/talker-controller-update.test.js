@@ -25,7 +25,7 @@ describe('#TalkerController - Update', () => {
       authorization: 'any_token'
     }
 
-    response.json =  jest.fn(() => {})
+    response.json =  jest.fn((any) => any)
     response.status = jest.fn(() => response)
   })
 
@@ -33,26 +33,24 @@ describe('#TalkerController - Update', () => {
     jest.clearAllMocks();
   });
 
-  it("should return status code 401 when token is not provided", () => {
+  it("should return status code 403 when token is not provided", () => {
     request.headers.authorization = ''
 
-    TalkerService.updateTalker = jest.fn().mockImplementation(() => {return {status: 401, message: "any_message" }})
+    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 403, message: "any_message" }})
+    TalkerController.update(request, response)
+
+    expect(response.status).toHaveBeenCalledWith(403);
+  })
+
+  it("should return status code 401 when field are invalid", () => {
+    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 401, message: "any_message" }})
     TalkerController.update(request, response)
 
     expect(response.status).toHaveBeenCalledWith(401);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
-  })
-
-  it("should return status code 400 when field are invalid", () => {
-    TalkerService.updateTalker = jest.fn().mockImplementation(() => {return {status: 400, message: "any_message" }})
-    TalkerController.update(request, response)
-
-    expect(response.status).toHaveBeenCalledWith(400);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it("should return status code 200 when talker is updated", () => {
-    TalkerService.updateTalker = jest.fn().mockImplementation(() => {
+    TalkerService.update = jest.fn().mockImplementation(() => {
       return {
         status: 200
       }

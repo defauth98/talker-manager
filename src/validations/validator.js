@@ -64,12 +64,13 @@ class Validator {
     this.validateFieldExists('email', email);
     this.validateFieldExists('password', password);
     this.validateEmail(email);
-    this.validateFieldMinLength('password', password, 6);
+    this.validateFieldMinLength('password', password, 7);
   }
 
   validateTalker(name, age, talk) {
     this.validateFieldExists('name', name);
     this.validateFieldExists('age', age);
+    // this.validateWatchedAt(talk.watchedAt);
     this.validateTalk(talk);
     this.validateFieldMinLength('name', name, 3);
     this.validateMinAge(age, 18);
