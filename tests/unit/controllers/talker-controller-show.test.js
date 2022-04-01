@@ -26,7 +26,7 @@ describe('#TalkerController - Show', () => {
   it('should return status code 200', () => {
     request.headers.authorization = 'any_token'
 
-    TalkerService.getTalkerById = jest.fn().mockImplementation(() => {return {status: 200}})
+    TalkerService.show = jest.fn().mockImplementation(() => {return {status: 200}})
     TalkerController.show(request, response)
 
     expect(response.status).toHaveBeenCalledWith(200);
@@ -35,11 +35,10 @@ describe('#TalkerController - Show', () => {
   it('should return status code 404 when talker not found', () => {
     request.headers.authorization = 'any_token'
 
-    TalkerService.getTalkerById = jest.fn().mockImplementation(() => {return { status: 404, message: "any_message"}})
+    TalkerService.show = jest.fn().mockImplementation(() => {return { status: 404, message: "any_message"}})
     TalkerController.show(request, response)
 
     expect(response.status).toHaveBeenCalledWith(404);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
 }); 

@@ -20,24 +20,20 @@ describe('#TalkerController - Delete', () => {
     jest.clearAllMocks();
   });
 
-  it("should return status code 401 when token is not provided", () => {
+  it("should return status code 403 when token is not provided", () => {
     request.headers.authorization = ''
 
-    TalkerService.deleteTalker = jest.fn().mockImplementation(() => {return {status: 401, message: "any_message" }})
+    TalkerService.delete = jest.fn().mockImplementation(() => {return {status: 403, errorMessage: "any_message" }})
     TalkerController.delete(request, response)
 
-    expect(response.status).toHaveBeenCalledWith(401);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
+    expect(response.status).toHaveBeenCalledWith(403);
   })
 
   it('should return status code 200 when talker is deleted', () => {
-    request.headers.authorization = 'any_token'
-
-    TalkerService.deleteTalker = jest.fn().mockImplementation(() => {return {status: 200, message: "any_message" }})
+    TalkerService.delete = jest.fn().mockImplementation(() => {return {status: 200, message: 'any_message'}})
     TalkerController.delete(request, response)
 
     expect(response.status).toHaveBeenCalledWith(200);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
 }); 

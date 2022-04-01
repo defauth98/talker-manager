@@ -23,7 +23,7 @@ describe('#TalkerController - Index', () => {
   it('should return status code 200', () => {
     request.headers.authorization = 'any_token'
 
-    TalkerService.getAllTalkers = jest.fn().mockImplementation(() => {return []})
+    TalkerService.index = jest.fn().mockImplementation(() => {return []})
     TalkerController.index(request, response)
 
     expect(response.status).toHaveBeenCalledWith(200);

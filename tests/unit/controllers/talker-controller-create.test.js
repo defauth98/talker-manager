@@ -29,18 +29,17 @@ describe('#TalkerController - Create', () => {
     jest.clearAllMocks();
   });
 
-  it("should return status code 401 when token is not provided", () => {
+  it("should return status code 403 when token is not provided", () => {
     request.body = {
       email:"invalidemail",
       password:"invalid_password"
     }
     request.headers.authorization = ''
 
-    TalkerService.createTalker = jest.fn().mockImplementation(() => {return {status: 401, message: "any_message" }})
-    TalkerController.create(request, response)
+    TalkerService.create = jest.fn().mockImplementation(() => {return {status: 403, errorMessage: "any_message" }})
+    console.log(TalkerController.create(request, response))
 
-    expect(response.status).toHaveBeenCalledWith(401);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
+    expect(response.status).toHaveBeenCalledWith(403);
   })
 
   it("should return status code 400 when field are invalid", () => {
@@ -49,15 +48,14 @@ describe('#TalkerController - Create', () => {
       password:"invalid_password"
     }
 
-    TalkerService.createTalker = jest.fn().mockImplementation(() => {return {status: 400, message: "any_message" }})
+    TalkerService.create = jest.fn().mockImplementation(() => {return {status: 400, errorMessage: "any_message" }})
     TalkerController.create(request, response)
 
     expect(response.status).toHaveBeenCalledWith(400);
-    expect(response.json).toHaveBeenCalledWith({ message: "any_message"});
   })
 
   it('should return status 201 when field are valid', () => {
-    TalkerService.createTalker = jest.fn().mockImplementation(() => body)
+    TalkerService.create = jest.fn().mockImplementation(() => body)
     TalkerController.create(request, response)
 
     expect(response.status).toHaveBeenCalledWith(201);
