@@ -36,14 +36,14 @@ describe('#TalkerController - Update', () => {
   it("should return status code 403 when token is not provided", () => {
     request.headers.authorization = ''
 
-    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 403, message: "any_message" }})
+    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 403, errorMessage: "any_message" }})
     TalkerController.update(request, response)
 
     expect(response.status).toHaveBeenCalledWith(403);
   })
 
   it("should return status code 401 when field are invalid", () => {
-    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 401, message: "any_message" }})
+    TalkerService.update = jest.fn().mockImplementation(() => {return {status: 401, errorMessage: "any_message" }})
     TalkerController.update(request, response)
 
     expect(response.status).toHaveBeenCalledWith(401);
