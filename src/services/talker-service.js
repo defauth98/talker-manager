@@ -67,7 +67,7 @@ class TalkerService {
 
       const talkers = readFile('talker.json');
       const result = talkers.filter((talker) => String(talker.name).includes(query));
-  
+
       return {
         status: 200,
         result,

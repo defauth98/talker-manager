@@ -21,15 +21,8 @@ describe('SearchTalker', () => {
     expect(searchTalkerResponse.errorMessage).toEqual('Token inválido')
   })
 
-  // it("should not find a talker with invalid name", () => {
-  //   const searchTalkerResponse = TalkerService.search(validUserInfo, "invalid_search")
-
-  //   expect(searchTalkerResponse.status).toEqual(200)
-  //   expect(searchTalkerResponse.result.length).toEqual(0)
-  // })
-
   it("should  find a talker with valid name", () => {
-    const searchTalkerResponse = TalkerService.search(validUserInfo, "Heloísa")
+    const searchTalkerResponse = TalkerService.search(validUserInfo, "Marcos")
 
     expect(searchTalkerResponse.status).toEqual(200)
     expect(searchTalkerResponse.result.length).toBeGreaterThanOrEqual(1)

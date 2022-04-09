@@ -37,7 +37,8 @@ describe('#TalkerController - Create', () => {
     request.headers.authorization = ''
 
     TalkerService.create = jest.fn().mockImplementation(() => {return {status: 403, errorMessage: "any_message" }})
-    console.log(TalkerController.create(request, response))
+    
+    TalkerController.create(request, response)
 
     expect(response.status).toHaveBeenCalledWith(403);
   })
