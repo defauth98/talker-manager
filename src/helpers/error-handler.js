@@ -1,5 +1,5 @@
 const AuthorizationError = require('./authorization-error');
-const ValidationError = require('./validation-error');
+// const ValidationError = require('./validation-error');
 
 class ErrorHandler {
   static handle(error) {
@@ -10,12 +10,10 @@ class ErrorHandler {
       };
     }
     
-    if (error.name === ValidationError.name) {
-      return {
-        status: 401,
-        errorMessage: error.message,
-      }; 
-    }
+    return {
+      status: 401,
+      errorMessage: error.message,
+    }; 
   }
 }
 
